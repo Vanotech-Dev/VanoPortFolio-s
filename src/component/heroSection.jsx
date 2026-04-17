@@ -4,7 +4,7 @@ import introduce from "../assets/img/introduce.png";
 export default function HeroSection() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen pt-7 pb-25 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="home">
-      <div className="flex flex-col-reverse items-center justify-center lg:justify-between w-full max-w-5xl gap-12 lg:gap-24 xl:flex-row z-10">
+      <div className="flex flex-col items-center justify-center lg:justify-between w-full max-w-5xl gap-12 lg:gap-24 xl:flex-row-reverse z-10">
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-lg shadow-primary/5 backdrop-blur-md">
             <span className="text-primary font-bold text-xs tracking-[0.2em] uppercase">Welcome to my universe</span>
@@ -50,7 +50,7 @@ export default function HeroSection() {
           </div>
 
           <div className="relative group perspective-1000 z-10">
-            <div className="w-[400px] h-[400px] sm:w-[400px] sm:h-[250px] bg-surface/40 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-3xl flex items-center justify-center transform transition-all duration-1000 group-hover:rotate-y-6 group-hover:-rotate-x-6 hover:shadow-primary/20 overflow-hidden">
+            <div className="w-[300px] h-[175px] sm:w-[400px] sm:h-[250px] bg-surface/40 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-3xl flex items-center justify-center transform transition-all duration-1000 group-hover:rotate-y-6 group-hover:-rotate-x-6 hover:shadow-primary/20 overflow-hidden">
               <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
               <img
                 src={introduce}
