@@ -35,7 +35,7 @@ function ProjectCard({ title, link, description }) {
                         <div className="w-full h-full p-0 overflow-hidden relative group/iframe">
                             <iframe
                                 src={link}
-                                className="w-[1280px] h-[800px] origin-top-left scale-[0.25] sm:scale-[0.3] pointer-events-none border-none blur-xl group-hover/iframe:blur-0 transition-all duration-700 object-center lg:object-bottom"
+                                className="w-[1280px] h-[800px] origin-top-left scale-[0.3] sm:scale-[0.3] pointer-events-none border-none blur-xl group-hover/iframe:blur-0 transition-all duration-700 object-center lg:object-bottom"
                                 title={title}
                                 loading="lazy"
                             ></iframe>
