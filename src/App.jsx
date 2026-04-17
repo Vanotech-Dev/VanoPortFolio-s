@@ -3,6 +3,7 @@ import HeroSection from "./component/heroSection";
 import Project from "./component/project";
 import Tech from "./component/tech";
 import Testimoni from "./component/testimoni";
+import Footer from "./component/footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Project />
       <Tech />
       <Testimoni />
+      <Footer />
     </div>
   );
 }

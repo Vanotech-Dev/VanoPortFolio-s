@@ -3,7 +3,7 @@ import introduce from "../assets/img/introduce.png";
 
 export default function HeroSection() {
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen pt-10 pb-25 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="home">
+    <section className="flex flex-col items-center justify-center min-h-screen pt-7 pb-25 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="home">
       <div className="flex flex-col-reverse items-center justify-center lg:justify-between w-full max-w-5xl gap-12 lg:gap-24 xl:flex-row z-10">
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-lg shadow-primary/5 backdrop-blur-md">
@@ -35,11 +35,11 @@ export default function HeroSection() {
             </a>
           </div>
 
-          <div className="flex items-center gap-6 pt-8">
-            <SocialIcon href="#" icon={<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>} />
-            <SocialIcon href="#" icon={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></>} />
-            <SocialIcon href="#" icon={<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></>} />
-            <SocialIcon href="#" icon={<path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>} />
+          <div className="flex items-center gap-6 pt-4">
+            <SocialIcon href="https://github.com/Vanotech-Dev" icon={<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>} />
+            <SocialIcon href="https://www.instagram.com/just0vano?igsh=Mng1MnRiejMwbTc4" icon={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></>} />
+            <SocialIcon href="https://www.linkedin.com/in/revan-revano-512519385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" icon={<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></>} />
+            <SocialIcon href="https://www.tiktok.com/@just0vano?_r=1&_t=ZS-95bvRQnXT6a" icon={<path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>} />
           </div>
         </div>
 
