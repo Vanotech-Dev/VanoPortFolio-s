@@ -1,10 +1,45 @@
+import { useRef } from 'react';
 import { FolderKanban } from 'lucide-react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function Project() {
+    const container = useRef();
+
+    useGSAP(() => {
+        // Section Header Animation
+        gsap.from(".project-header > *", {
+            scrollTrigger: {
+                trigger: ".project-header",
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+        });
+
+        // Project Cards Animation
+        gsap.from(".project-card", {
+            scrollTrigger: {
+                trigger: ".project-grid",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+        });
+    }, { scope: container });
+
     return (
-        <section id="project" className="flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+        <section ref={container} id="project" className="flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-5xl z-10">
-                <div className="flex flex-col items-center justify-center gap-6 mb-20">
+                <div className="project-header flex flex-col items-center justify-center gap-6 mb-20">
                     <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-sm backdrop-blur-md">
                         <span className="text-primary font-bold text-xs tracking-[0.2em] uppercase">This is my</span>
                     </div>
@@ -14,10 +49,16 @@ export default function Project() {
                     <div className='w-24 h-1.5 bg-primary rounded-full shadow-[0_0_15px_rgba(8,131,149,0.5)]'></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <ProjectCard title="Project 1" link="https://alvinferdinand.site/" description="Web Portofolio" />
-                    <ProjectCard title="Project 2" />
-                    <ProjectCard title="Project 3" />
+                <div className="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="project-card h-full">
+                        <ProjectCard title="Project 1" link="https://alvinferdinand.site/" description="Web Portofolio" />
+                    </div>
+                    <div className="project-card h-full"> 
+                        <ProjectCard title="Project 2" />
+                    </div>
+                    <div className="project-card h-full">
+                        <ProjectCard title="Project 3" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -26,7 +67,7 @@ export default function Project() {
 
 function ProjectCard({ title, link, description }) {
     return (
-        <div className="group relative">
+        <div className="group relative h-full">
             <div className="absolute -inset-0.5 bg-linear-to-r from-primary to-primary-dark rounded-3xl blur opacity-20 group-hover:opacity-60 transition duration-500"></div>
             <div className="relative bg-surface p-6 rounded-3xl border border-white/10 backdrop-blur-3xl overflow-hidden flex flex-col h-full">
                 <div className="relative h-56 w-full bg-bg-deep rounded-2xl border border-white/5 overflow-hidden group-hover:border-primary/30 transition-colors duration-500">
@@ -51,33 +92,35 @@ function ProjectCard({ title, link, description }) {
                     <div className="absolute inset-0 opacity-[0.03] bg-size-[20px_20px] bg-[radial-gradient(circle_at_center,#fff_1px,transparent_1px)] pointer-events-none"></div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
-                    {description ? (
-                        <div>
-                            <h3 className='font-headline text-xl text-text-main tracking-tight group-hover:text-primary transition-colors'>{title}</h3>
-                            <p className="text-[10px] text-text-dim uppercase tracking-widest mt-1">{description}</p>
-                        </div>
-                    ) : (
-                        <div>
-                            <h3 className='font-headline text-xl text-text-main tracking-tight group-hover:text-primary transition-colors'>{title}</h3>
-                            <p className="text-[10px] text-text-dim uppercase tracking-widest mt-1">Web Project</p>
-                        </div>
-                    )
-                    }
+                <div className="mt-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                        {description ? (
+                            <div>
+                                <h3 className='font-headline text-xl text-text-main tracking-tight group-hover:text-primary transition-colors'>{title}</h3>
+                                <p className="text-[10px] text-text-dim uppercase tracking-widest mt-1">{description}</p>
+                            </div>
+                        ) : (
+                            <div>
+                                <h3 className='font-headline text-xl text-text-main tracking-tight group-hover:text-primary transition-colors'>{title}</h3>
+                                <p className="text-[10px] text-text-dim uppercase tracking-widest mt-1">Web Project</p>
+                            </div>
+                        )}
 
-                    <a
-                        href={link || "#"}
-                        target={link ? "_blank" : "_self"}
-                        rel="noreferrer"
-                        className="p-3 rounded-xl border border-white/10 bg-white/5 group-hover:border-primary/50 text-text-dim group-hover:text-primary group-hover:bg-primary/10 transition-all cursor-pointer"
-                    >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </a>
+                        <a
+                            href={link || "#"}
+                            target={link ? "_blank" : "_self"}
+                            rel="noreferrer"
+                            className="p-3 rounded-xl border border-white/10 bg-white/5 group-hover:border-primary/50 text-text-dim group-hover:text-primary group-hover:bg-primary/10 transition-all cursor-pointer"
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+

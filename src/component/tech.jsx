@@ -1,8 +1,42 @@
+import { useRef } from 'react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 export default function Tech() {
+    const container = useRef();
+
+    useGSAP(() => {
+        // Section Header Animation
+        gsap.from(".tech-header > *", {
+            scrollTrigger: {
+                trigger: ".tech-header",
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+        });
+
+        // Marquee Animation
+        gsap.from(".tech-marquee", {
+            scrollTrigger: {
+                trigger: ".tech-marquee",
+                start: "top 90%",
+                toggleActions: "play none none none",
+            },
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.out",
+        });
+    }, { scope: container });
+
     return (
-        <section id="tech" className="flex flex-col items-center justify-center min-h-screen py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section ref={container} id="tech" className="flex flex-col items-center justify-center min-h-screen py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
             <div className="w-full max-w-6xl z-10">
-                <div className="flex flex-col items-center justify-center gap-6 mb-24">
+                <div className="tech-header flex flex-col items-center justify-center gap-6 mb-24">
                     <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-sm backdrop-blur-md">
                         <span className="text-primary font-bold text-xs tracking-[0.2em] uppercase">My Skills &lt;/&gt;</span>
                     </div>
@@ -12,7 +46,7 @@ export default function Tech() {
                     <div className='w-24 h-1.5 bg-primary rounded-full shadow-[0_0_15px_rgba(8,131,149,0.5)]'></div>
                 </div>
 
-                <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex overflow-hidden">
+                <div className="tech-marquee relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] flex overflow-hidden">
                     {/* First Row: Fast right to left */}
                     <div className="flex gap-8 py-4 animate-marquee whitespace-nowrap min-w-full flex-none hover:[animation-play-state:paused]">
                         <TechList />
@@ -52,4 +86,4 @@ function TechList() {
             ))}
         </>
     );
-}
+}

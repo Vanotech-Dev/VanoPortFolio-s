@@ -1,11 +1,59 @@
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import introduce from "../assets/img/introduce.png";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+const SOCIAL_LINKS = [
+  {
+    href: "https://github.com/Vanotech-Dev",
+    label: "Github",
+    icon: <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+  },
+  {
+    href: "https://www.instagram.com/just0vano?igsh=Mng1MnRiejMwbTc4",
+    label: "Instagram",
+    icon: <><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></>
+  },
+  {
+    href: "https://www.linkedin.com/in/revan-revano-512519385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    label: "LinkedIn",
+    icon: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></>
+  },
+  {
+    href: "https://www.tiktok.com/@just0vano?_r=1&_t=ZS-95bvRQnXT6a",
+    label: "TikTok",
+    icon: <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+  }
+];
 
 export default function HeroSection() {
+  const container = useRef();
+
+  useGSAP(() => {
+    // Entrance for text elements
+    gsap.from(".hero-content > *", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+    });
+
+    // Image entrance
+    gsap.from(".image-container", {
+      x: 50,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      delay: 0.5,
+    });
+  }, { scope: container });
+
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen pt-7 pb-25 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="home">
+    <section ref={container} className="flex flex-col items-center justify-center min-h-screen pt-7 pb-25 px-4 sm:px-6 lg:px-8 relative overflow-hidden" id="home">
       <div className="flex flex-col items-center justify-center lg:justify-between w-full max-w-5xl gap-12 lg:gap-24 xl:flex-row z-10">
-        <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+        <div className="hero-content flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-lg shadow-primary/5 backdrop-blur-md">
             <span className="text-primary font-bold text-xs tracking-[0.2em] uppercase">Welcome to my universe</span>
           </div>
@@ -15,6 +63,22 @@ export default function HeroSection() {
             <h1 className="font-headline text-6xl sm:text-8xl lg:text-9xl text-text-main tracking-tight leading-[0.8] drop-shadow-2xl">
               Revano<span className="text-primary">.</span>
             </h1>
+          </div>
+
+          {/* Social Links injected directly without extra component for debugging */}
+          <div className="flex items-center gap-6 py-2">
+            {SOCIAL_LINKS.map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                className="p-3 text-text-dim hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 border border-transparent hover:border-primary/20 bg-surface/50 backdrop-blur-sm group"
+                aria-label={social.label}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110">
+                  {social.icon}
+                </svg>
+              </a>
+            ))}
           </div>
 
           <p className="text-lg md:text-xl text-text-dim max-w-xl leading-relaxed font-light">
@@ -34,16 +98,9 @@ export default function HeroSection() {
               <span className="tracking-widest uppercase">Contact Me</span>
             </a>
           </div>
-
-          <div className="flex items-center gap-6 pt-4">
-            <SocialIcon href="https://github.com/Vanotech-Dev" icon={<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>} />
-            <SocialIcon href="https://www.instagram.com/just0vano?igsh=Mng1MnRiejMwbTc4" icon={<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></>} />
-            <SocialIcon href="https://www.linkedin.com/in/revan-revano-512519385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" icon={<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></>} />
-            <SocialIcon href="https://www.tiktok.com/@just0vano?_r=1&_t=ZS-95bvRQnXT6a" icon={<path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>} />
-          </div>
         </div>
 
-        <div className="flex-1 flex justify-center items-center relative">
+        <div className="image-container flex-1 flex justify-center items-center relative">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] border border-primary/20 rounded-full animate-spin-slow opacity-30"></div>
             <div className="absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] border border-white/5 rounded-full animate-reverse-spin opacity-20" style={{ animationDuration: '15s' }}></div>
@@ -71,16 +128,7 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
-  );
-}
-
-function SocialIcon({ href, icon }) {
-  return (
-    <a href={href} className="p-3 text-text-dim hover:text-primary hover:bg-primary/10 rounded-xl transition-all duration-300 border border-transparent hover:border-primary/20 bg-surface/50 backdrop-blur-sm group">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:scale-110">{icon}</svg>
-    </a>
   );
 }

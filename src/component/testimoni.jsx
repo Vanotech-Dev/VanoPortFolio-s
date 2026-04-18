@@ -1,4 +1,7 @@
+import { useRef } from 'react';
 import { Quote } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const TESTIMONI_DATA = [
     {
@@ -19,12 +22,44 @@ const TESTIMONI_DATA = [
 ];
 
 export default function Testimoni() {
+    const container = useRef();
+
+    useGSAP(() => {
+        // Section Header Animation
+        gsap.from(".testimoni-header > *", {
+            scrollTrigger: {
+                trigger: ".testimoni-header",
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+        });
+
+        // Testimonial Cards Animation
+        gsap.from(".testimoni-card", {
+            scrollTrigger: {
+                trigger: ".testimoni-grid",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+        });
+    }, { scope: container });
+
     return (
-        <section id="testimoni" className="flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section ref={container} id="testimoni" className="flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -z-10 animate-pulse"></div>
 
             <div className="w-full max-w-6xl z-10">
-                <div className="flex flex-col items-center justify-center gap-6 mb-24">
+                <div className="testimoni-header flex flex-col items-center justify-center gap-6 mb-24">
                     <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 shadow-sm backdrop-blur-md">
                         <span className="text-primary font-bold text-xs tracking-[0.2em] uppercase">Testimonials</span>
                     </div>
@@ -35,9 +70,11 @@ export default function Testimoni() {
                 </div>
 
                 {/* Testimonial Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="testimoni-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {TESTIMONI_DATA.map((item, index) => (
-                        <TestimoniCard key={index} {...item} />
+                        <div key={index} className="testimoni-card h-full">
+                            <TestimoniCard {...item} />
+                        </div>
                     ))}
                 </div>
             </div>
@@ -47,14 +84,14 @@ export default function Testimoni() {
 
 function TestimoniCard({ name, role, testimoni }) {
     return (
-        <div className="group relative bg-surface/40 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 shadow-xl hover:shadow-primary/10 overflow-hidden">
+        <div className="group relative bg-surface/40 backdrop-blur-2xl rounded-3xl border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 shadow-xl hover:shadow-primary/10 overflow-hidden h-full flex flex-col">
             {/* Quote Icon Decoration */}
             <div className="absolute -top-4 -right-2 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
                 <Quote size={120} className="text-primary rotate-12" />
             </div>
 
-            <div className="relative z-10">
-                <div className="mb-8">
+            <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-8 flex-1">
                     <Quote className="text-primary mb-4 opacity-50" size={32} />
                     <p className="text-text-dim leading-relaxed italic text-lg line-clamp-4 group-hover:text-text-main transition-colors duration-500">
                         "{testimoni}"
