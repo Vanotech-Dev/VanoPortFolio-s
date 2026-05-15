@@ -5,6 +5,7 @@ import Tech from "./component/tech";
 import Testimoni from "./component/testimoni";
 import Footer from "./component/footer";
 
+
 function App() {
   return (
     <div className="relative min-h-screen w-full bg-bg-deep text-text-main font-sans selection:bg-primary/30 selection:text-primary-foreground pb-20 lg:pb-0">
